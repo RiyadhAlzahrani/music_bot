@@ -14,7 +14,7 @@ class music_cog(commands.Cog):
 
         # 2d array containing [song, channel]
         self.music_queue = []
-        self.YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
+        self.YDL_OPTIONS = {'format': 'best', 'noplaylist':'True', 'quality':'0' }
         self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
         self.vc = None
@@ -92,20 +92,20 @@ class music_cog(commands.Cog):
     @commands.command(name="pause", help="Pauses the current song being played")
     async def pause(self, ctx, *args):
         if self.is_playing:
-		    self.is_playing = False
-		    self.is_paused = True
-		    self.vc.pause()
+            self.is_playing = False
+            self.is_paused = True
+            self.vc.pause()
         elif self.is_paused:
-		self.is_paused = False
-		self.is_playing = True
-		self.vc.resume()
+            self.is_paused = False
+            self.is_playing = True
+            self.vc.resume()
 
     @commands.command(name = "resume", aliases=["r"], help="Resumes playing with the discord bot")
     async def resume(self, ctx, *args):
         if self.is_paused:
-		self.is_paused = False
-		self.is_playing = True
-		self.vc.resume()
+            self.is_paused = False
+            self.is_playing = True
+            self.vc.resume()
 
     @commands.command(name="skip", aliases=["s"], help="Skips the current song being played")
     async def skip(self, ctx):
