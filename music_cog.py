@@ -95,7 +95,7 @@ class music_cog(commands.Cog):
             self.is_playing = False
             self.is_paused = True
             self.vc.pause()
-        elif self.is_paused:
+        else:
             self.is_paused = False
             self.is_playing = True
             self.vc.resume()
@@ -103,8 +103,8 @@ class music_cog(commands.Cog):
     @commands.command(name = "resume", aliases=["r"], help="Resumes playing with the discord bot")
     async def resume(self, ctx, *args):
         if self.is_paused:
-            self.is_paused = False
             self.is_playing = True
+            self.is_paused = False
             self.vc.resume()
 
     @commands.command(name="skip", aliases=["s"], help="Skips the current song being played")
